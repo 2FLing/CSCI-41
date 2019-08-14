@@ -5,7 +5,7 @@ private:
 	double width;
 public:
 	Rectangle();
-	Rectangle(double l=0, double w=5);
+	Rectangle(double l, double w);
 	void setRectangle(double l, double w);
 	void display();
 };
