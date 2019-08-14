@@ -7,6 +7,11 @@ Rectangle::Rectangle()
 	length = 0;
 	width = 0;
 }
+Rectancle::Rectangle(double l)
+{
+	lenth=l;
+	width=0;
+}
 Rectangle::Rectangle(double l, double w)
 {
 	length = l;
