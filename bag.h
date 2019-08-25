@@ -3,12 +3,20 @@
 #define _Bag
 #include<iostream>
 using namespace std;
+<<<<<<< HEAD
 
+=======
+const int MAX = 100;
+>>>>>>> b23d309eb87005792a920248dc079bf783085f0e
 //Class Definition (Interface)
 class Bag
 {
 private:
+<<<<<<< HEAD
 	int bagStorage[100];
+=======
+	int bagStorage[MAX];
+>>>>>>> b23d309eb87005792a920248dc079bf783085f0e
 	int size;
 public:
 	Bag(); //This is a default constructor
@@ -18,8 +26,13 @@ public:
 	void remove(int item);
 	void display();
 	void clear();
+<<<<<<< HEAD
 	bool contains(int item);
 	bool getMax(int& maxitem);
+=======
+	void insert(int);
+	bool contains(int item);
+>>>>>>> b23d309eb87005792a920248dc079bf783085f0e
 };
 //Definition of Constructors
 Bag::Bag()
@@ -40,7 +53,11 @@ bool Bag::isEmpty()
 }
 void Bag::add(int item)
 {
+<<<<<<< HEAD
 	if (size == 100)
+=======
+	if (size == MAX)
+>>>>>>> b23d309eb87005792a920248dc079bf783085f0e
 		cout << "The bag is full!" << endl;
 	else {
 		bagStorage[size] = item;
@@ -56,6 +73,10 @@ void Bag::display()
 void Bag::clear()
 {
 	size = 0;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> b23d309eb87005792a920248dc079bf783085f0e
 }
 bool Bag::contains(int item)
 {
@@ -89,6 +110,7 @@ void Bag::remove(int item)
 		size--;
 	}
 }
+<<<<<<< HEAD
 bool Bag::getMax(int& maxitem)
 {
 	int num;
@@ -108,3 +130,16 @@ bool Bag::getMax(int& maxitem)
 	return Notempty;
 }
 #endif _Bag
+=======
+void Bag::insert(int num)
+{
+	if (contains(num))
+		cout << "This number is already in the bag." << endl;
+	else
+	{
+		bagStorage[size] = num;
+		size++;
+	}
+}
+#endif _Bag
+>>>>>>> b23d309eb87005792a920248dc079bf783085f0e
