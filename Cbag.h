@@ -1,45 +1,44 @@
 //Header File for Class Bag (as a sample of an implementation of ADT
-#ifndef _Bag
 #define _Bag
 #include<iostream>
 using namespace std;
-const int MAX = 100;
+const int CMAX = 100;
 //Class Definition (Interface)
-class Bag
+class CBag
 {
 private:
-	int bagStorage[MAX];
+	char bagStorage[CMAX];
 	int size;
 public:
-	Bag(); //This is a default constructor
+	CBag(); //This is a default constructor
 	int getSize();
 	bool isEmpty();
-	void add(int item);
-	void remove(int item);
+	void add(char item);
+	void remove(char item);
 	void display();
 	void clear();
-	bool contains(int item);
+	bool contains(char item);
 };
 //Definition of Constructors
-Bag::Bag()
+CBag::CBag()
 {
 	size = 0;
 }
 //Definition of Methods (Member Functions)
-int Bag::getSize()
+int CBag::getSize()
 {
 	return size;
 }
-bool Bag::isEmpty()
+bool CBag::isEmpty()
 {
 	if (size == 0)
 		return true;
 	else
 		return false;
 }
-void Bag::add(int item)
+void CBag::add(char item)
 {
-	if (size == MAX)
+	if (size == CMAX)
 		cout << "The bag is full!" << endl;
 	else
 	{
@@ -47,18 +46,18 @@ void Bag::add(int item)
 		size++;
 	}
 }
-void Bag::display()
+void CBag::display()
 {
 	cout << "The bag contains following integers: " << endl;
 	for (int i = 0; i < size; i++)
 		cout << bagStorage[i] << endl;
 }
-void Bag::clear()
+void CBag::clear()
 {
 	size = 0;
-	
+
 }
-bool Bag::contains(int item)
+bool CBag::contains(char item)
 {
 	for (int i = 0; i < size; i++) {
 		if (bagStorage[i] == item)
@@ -66,7 +65,7 @@ bool Bag::contains(int item)
 	}
 	return false;
 }
-void Bag::remove(int item)
+void CBag::remove(char item)
 {
 	if (isEmpty()) {
 		cout << "Removal is failed! The bag is empty!" << endl;
@@ -90,4 +89,3 @@ void Bag::remove(int item)
 		size--;
 	}
 }
-#endif _Bag

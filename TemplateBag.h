@@ -3,62 +3,68 @@
 #define _Bag
 #include<iostream>
 using namespace std;
-const int MAX = 100;
+
 //Class Definition (Interface)
+template<class ItemType>
 class Bag
 {
 private:
-	int bagStorage[MAX];
+	ItemType bagStorage[100];
 	int size;
 public:
 	Bag(); //This is a default constructor
 	int getSize();
 	bool isEmpty();
-	void add(int item);
-	void remove(int item);
+	void add(ItemType item);
+	void remove(ItemType item);
 	void display();
 	void clear();
-	bool contains(int item);
+	bool contains(ItemType item);
 };
 //Definition of Constructors
-Bag::Bag()
+template<class ItemType>
+Bag<ItemType>::Bag()
 {
 	size = 0;
 }
 //Definition of Methods (Member Functions)
-int Bag::getSize()
+template<class ItemType>
+int Bag<ItemType>::getSize()
 {
 	return size;
 }
-bool Bag::isEmpty()
+template<class ItemType>
+bool Bag<ItemType>::isEmpty()
 {
 	if (size == 0)
 		return true;
 	else
 		return false;
 }
-void Bag::add(int item)
+template<class ItemType>
+void Bag<ItemType>::add(ItemType item)
 {
-	if (size == MAX)
+	if (size == 100)
 		cout << "The bag is full!" << endl;
-	else
-	{
+	else {
 		bagStorage[size] = item;
 		size++;
 	}
 }
-void Bag::display()
+template<class ItemType>
+void Bag<ItemType>::display()
 {
 	cout << "The bag contains following integers: " << endl;
 	for (int i = 0; i < size; i++)
 		cout << bagStorage[i] << endl;
 }
-void Bag::clear()
+template<class ItemType>
+void Bag<ItemType>::clear()
 {
 	size = 0;
-	
 }
-bool Bag::contains(int item)
+template<class ItemType>
+bool Bag<ItemType>::contains(ItemType item)
 {
 	for (int i = 0; i < size; i++) {
 		if (bagStorage[i] == item)
@@ -66,7 +72,8 @@ bool Bag::contains(int item)
 	}
 	return false;
 }
-void Bag::remove(int item)
+template<class ItemType>
+void Bag<ItemType>::remove(ItemType item)
 {
 	if (isEmpty()) {
 		cout << "Removal is failed! The bag is empty!" << endl;

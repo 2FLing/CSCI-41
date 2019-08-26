@@ -1,3 +1,5 @@
+#include<iostream>
+using namespace std;
 class Rectangle
 {
 private:
@@ -12,6 +14,7 @@ public:
 	void GetWidth(double l);
 	void setRectangle(double l, double w);
 	void display();
+	friend ostream& operator<<(ostream& os, Rectangle rec);
 };
 Rectangle::Rectangle()
 {
@@ -20,7 +23,7 @@ Rectangle::Rectangle()
 }
 Rectangle::Rectangle(double l)
 {
-	lenth = l;
+	length = l;
 	width = 0;
 }
 Rectangle::Rectangle(double l, double w)
@@ -63,4 +66,9 @@ Rectangle Rectangle::operator+(Rectangle& Rec)
 	r.GetLength(this->length + Rec.length);
 	r.GetWidth(this->width + Rec.width);
 	return r;
+}
+ostream& operator<<(ostream& os, Rectangle rec)
+{
+	os << "This is a Rectangle the width is: " << rec.width << " the length is :" << rec.length<<endl;
+	return os;
 }
