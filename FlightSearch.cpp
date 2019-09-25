@@ -4,8 +4,8 @@
 int main()
 {
 	createMap();
-	int a;
-	char cityOfOrigin, cityOfDestination, adjacentCity,trash;
+	char a;
+	char cityOfOrigin, cityOfDestination, adjacentCity;
 	do {
 		cout << "Please choose one of the following:" << endl;
 		cout << "+------------------------   ---+\n";
@@ -17,21 +17,25 @@ int main()
 		cin >> a;
 		switch (a)
 		{
-		case 1:
+		case '1':
 		{cout << "Please enter the city of the origin: \n";
 		cin >> cityOfOrigin;
+		cityOfOrigin = toupper(cityOfOrigin);
 		cout << "Please enter the city of the destination: \n";
 		cin >> cityOfDestination;
+		cityOfDestination = toupper(cityOfDestination);
 		if (inPath(cityOfOrigin, cityOfDestination))
 			cout << "Yes, flight or flights found!\n";
 		else
 			cout << "No, there is no flight to get there!\n";
 		break; }
-		case 2:
+		case '2':
 		{cout << "Please enter the city of the origin: \n";
 		cin >> cityOfOrigin;
+		cityOfOrigin = toupper(cityOfOrigin);
 		cout << "Please enter new adjacent city: \n";
 		cin >> adjacentCity;
+		adjacentCity=toupper(adjacentCity);
 		if (addAdjacentCity(cityOfOrigin, adjacentCity)) {
 			cout << "New adjacent city is added." << endl;
 		}
@@ -39,10 +43,10 @@ int main()
 			cout << "Adding adjacent city failed." << endl;
 		}
 		break; }
-		case 3:
+		case '3':
 		{displayFlightMap();
 		break; }
-		case 4:
+		case '4':
 		{
 			cout << "You choose to exit the program." << endl;
 			break; }
@@ -51,7 +55,7 @@ int main()
 		break; }
 		};
 
-	} while (a != 4);
+	} while (a != '4');
 	system("pause");
 	return 0;
 }

@@ -1,6 +1,7 @@
 //Assignment 9 (Midterm Project 1 Flight Search Problem)
 
 #include<iostream>
+#include<iomanip>
 #include"Node.h"
 #include"Stack.h"
 using namespace std;
@@ -35,7 +36,7 @@ void createMap()
 		flightMap[i].visited = false;
 	}
 	flightMap[0].adjacent = new Node<char>('B', NULL);
-	flightMap[1].adjacent =NULL;
+	flightMap[1].adjacent = NULL;
 	flightMap[2].adjacent = new Node<char>('B', NULL);
 	newNode = new Node<char>('E', NULL);
 	flightMap[3].adjacent = new Node<char>('C', newNode);
@@ -49,8 +50,8 @@ void createMap()
 }
 void displayFlightMap()
 {
-	string visited,city_name;
-	cout << "     City Name        Visited        Adjacent City" << endl;
+	string visited, city_name;
+	cout << setw(14)<<"City Name"<<setw(14)<<"Visited"<< setw(24)<<"Adjacent City"<<endl;
 	for (int i = 0; i < MAX; i++)
 	{
 		if (flightMap[i].visited == true)
@@ -61,13 +62,20 @@ void displayFlightMap()
 			city_name = "None";
 		else
 			city_name = flightMap[i].adjacent->getItem();
-		cout << "        " << flightMap[i].cityName << "              " <<visited<<"                " << city_name << "  ";
-		if (flightMap[i].adjacent!=NULL and flightMap[i].adjacent->getNext() != NULL)
+		if (city_name == "None")
+		{
+			cout << setw(10) << flightMap[i].cityName << setw(17) << visited << setw(21) << city_name << "  ";
+		}
+		else
+		{
+			cout << setw(10) << flightMap[i].cityName << setw(17) << visited << setw(18) << city_name << "  ";
+		}
+		if (flightMap[i].adjacent != NULL and flightMap[i].adjacent->getNext() != NULL)
 		{
 			Node<char>* temp_node = flightMap[i].adjacent->getNext();
 			while (temp_node != NULL)
 			{
-				cout << temp_node->getItem()<<" ";
+				cout << temp_node->getItem() << " ";
 				temp_node = temp_node->getNext();
 			}
 			cout << endl;
@@ -84,7 +92,6 @@ void markVisited(char aCity)
 		if (flightMap[i].cityName == aCity)
 		{
 			flightMap[i].visited = true;
-			cout << "City is found!" << endl;
 			found = true;
 			break;
 		}
@@ -144,7 +151,7 @@ bool addAdjacentCity(char aCity, char adjCity)
 			if (flightMap[index].cityName == aCity)//get the location of the city
 				break;
 		}
-		if (flightMap[index].adjacent->getItem() == adjCity)
+		if (flightMap[index].adjacent!=NULL and flightMap[index].adjacent->getItem() == adjCity)
 		{
 			cout << "The adjancentCity is already exist!" << endl;
 			return false;
@@ -156,7 +163,7 @@ bool addAdjacentCity(char aCity, char adjCity)
 			return true;
 		}
 	}
-		
+
 }
 bool getNextUnvisitedAdjCity(char aCity, char& adjCity)
 {
@@ -169,7 +176,7 @@ bool getNextUnvisitedAdjCity(char aCity, char& adjCity)
 	else
 	{
 		int index;
-		Node<char>*temp_node;
+		Node<char>* temp_node;
 		for (index = 0; index < MAX; index++)
 		{
 			if (flightMap[index].cityName == aCity)
@@ -191,7 +198,7 @@ bool getNextUnvisitedAdjCity(char aCity, char& adjCity)
 					adjCity = temp_node->getItem();
 					return true;
 				}
-					
+
 			}
 			return false;
 		}
