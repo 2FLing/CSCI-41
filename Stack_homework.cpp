@@ -3,7 +3,6 @@
 #include<string>
 #include"stack.h"
 bool is_braces_balance(string);
-bool is_equal(char, char);
 int main()
 {
 	string my_string;
@@ -16,42 +15,24 @@ int main()
 }
 //abc{abc(abc)abc}
 //abc{abc(abc}abc)
-bool is_braces_balance(string st)
+bool balanced_braces(string str)
 {
-	Stack<char> my_stack;
-	for (int i = 0; i < st.size(); i++)
+	Stack<char>myStack;
+	for (int i = 0; i < str.size(); i++)
 	{
-		if (st.at(i) == '(' or st.at(i) == '{')//push the left side symbol into stack.
+		if (str.at(i) == '(' or str.at(i) == '{')
+			myStack.push(str.at(i));
+		else if (str.at(i) == ')' or str.at(i) == '}')
 		{
-			my_stack.push(st.at(i));
-		}
-	}
-	for (int i = 0; i < st.size(); i++)
-	{
-		if (st.at(i) == ')' and st.at(i) == '}')//if the charater in the string is a right side symbol then make it compare with the symbol in the stack.
-		{
-			if (is_equal(my_stack.peek(), st.at(i)))//if the left side symbol and right side symbol are matched then pop the symbol out of the stack
-			{
-				my_stack.pop();
-			}
-			if (my_stack.isEmpty())//if the stack is empty but there is still right side symbol in the string then it is not a balance string.
+			
+			if (myStack.isEmpty())
 				return false;
+			else
+				myStack.pop();
 		}
 	}
-	if (!my_stack.isEmpty())//if there are still symbols in the stack then it is not a balance string.
-	{
-		return false;
-	}
-	else//otherwise it is a balance string.
+	if (myStack.isEmpty())
 		return true;
-}
-//if the left side symbol is matched with the right side symbol then they are equal.
-bool is_equal(char left_symbol, char right_symbol)
-{
-	bool equal = false;
-	if (left_symbol == '(' and right_symbol == ')')
-		equal = true;
-	if (left_symbol == '{' and right_symbol == '}')
-		equal = true;
-	return equal;
+	else
+		return false;
 }
